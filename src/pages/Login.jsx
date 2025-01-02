@@ -62,8 +62,8 @@ const Login = () => {
                                 type='text'
                                 placeholder='Enter your username'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.username
-                                        ? "border-red-500 focus:ring-red-500"
-                                        : "border-slate-300 focus:ring-[#ff5c00]"
+                                    ? "border-red-500 focus:ring-red-500"
+                                    : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("username")}
                             />
@@ -82,8 +82,8 @@ const Login = () => {
                                 type={showPassword ? "text" : "password"}
                                 placeholder='Enter your password'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.password
-                                        ? "border-red-500 focus:ring-red-500"
-                                        : "border-slate-300 focus:ring-[#ff5c00]"
+                                    ? "border-red-500 focus:ring-red-500"
+                                    : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("password")}
                             />
