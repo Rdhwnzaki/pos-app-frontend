@@ -11,11 +11,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
+import { useDispatch } from "react-redux";
+import { loginUser } from "@/redux/auth/authSlice";
+
 const loginSchema = z.object({
-    username: z.string().min(1, "Username is required"),
+    userName: z.string().min(1, "Username is required"),
     password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
@@ -29,10 +31,14 @@ const Login = () => {
     });
 
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+    // const { status, error } = useSelector((state) => state.auth);
 
     const onSubmit = (data) => {
-        console.log("Login Data:", data);
+        console.log(data);
+
+        dispatch(loginUser(data));
     };
 
     return (
@@ -61,15 +67,15 @@ const Login = () => {
                                 id='username'
                                 type='text'
                                 placeholder='Enter your username'
-                                className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.username
+                                className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.userName
                                     ? "border-red-500 focus:ring-red-500"
                                     : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
-                                {...register("username")}
+                                {...register("userName")}
                             />
-                            {errors.username && (
+                            {errors.userName && (
                                 <p className='text-red-500 text-sm'>
-                                    {errors.username.message}
+                                    {errors.userName.message}
                                 </p>
                             )}
                         </div>
@@ -111,11 +117,6 @@ const Login = () => {
                         onClick={handleSubmit(onSubmit)}>
                         Login
                     </Button>
-                    <p
-                        className='text-midnight-blue text-sm cursor-pointer hover:underline'
-                        onClick={() => navigate("/register")}>
-                        {"Don't have an account? Register"}
-                    </p>
                 </CardFooter>
             </Card>
         </div>
