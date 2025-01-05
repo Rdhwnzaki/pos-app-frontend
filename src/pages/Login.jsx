@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/redux/auth/authSlice";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const loginSchema = z.object({
     userName: z.string().min(1, "Username is required"),
@@ -54,6 +55,9 @@ const Login = () => {
         <div
             className='bg-cover bg-center h-screen flex justify-center items-center'
             style={{ backgroundImage: "url('/bg.jpg')" }}>
+            <Helmet>
+                <title>Login - SwiftPOS</title>
+            </Helmet>
             <Toaster position='top-right' reverseOrder={false} />
             <Card className='w-[450px] bg-white shadow-lg rounded-lg'>
                 <CardHeader>

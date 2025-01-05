@@ -1,6 +1,12 @@
+import { Helmet } from "react-helmet"
 function Dashboard() {
     return (
-        <div>Dashboard</div>
+        <div>
+            <Helmet>
+                <title>Dashboard - SwiftPOS</title>
+            </Helmet>
+            Dashboard
+        </div>
     )
 }
 

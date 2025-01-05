@@ -1,5 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { RiDashboard3Fill } from "react-icons/ri";
+import { IoLogOutSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 export default function Sidebar({ isOpen }) {
@@ -27,6 +28,14 @@ export default function Sidebar({ isOpen }) {
                         }}>
                         <FaUser className='mr-3 text-xl' />
                         <span className='font-medium'>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        className='flex items-center p-3 rounded-lg hover:bg-midnight-blue hover:text-white transition-colors'
+                        onClick={() => { }}>
+                        <IoLogOutSharp className='mr-3 text-2xl' />
+                        <span className='font-medium'>Logout</span>
                     </a>
                 </li>
             </ul>
