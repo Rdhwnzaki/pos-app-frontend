@@ -5,7 +5,10 @@ export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async (credentials, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, credentials);
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/users/login`,
+                credentials
+            );
             return response.data;
         } catch (error) {
             return rejectWithValue(
@@ -41,6 +44,8 @@ const authSlice = createSlice({
                 state.status = "succeeded";
                 state.user = action.payload.user;
                 state.token = action.payload.token;
+                sessionStorage.setItem("token", action.payload.accessToken);
+                sessionStorage.setItem("user", JSON.stringify(action.payload.result));
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = "failed";

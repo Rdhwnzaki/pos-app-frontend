@@ -1,14 +1,33 @@
+import { FaUser } from "react-icons/fa";
+import { RiDashboard3Fill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+
 export default function Sidebar({ isOpen }) {
+    const navigate = useNavigate();
     return (
         <aside
-            className={`fixed top-0 left-0 h-full bg-gray-800 text-white w-64 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed top-0 left-0 h-full bg-white text-black border-r-2 w-64 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
                 } transition-transform md:static md:translate-x-0`}>
-            <ul className='space-y-4 p-4'>
+            <ul className='space-y-4 p-4 cursor-pointer'>
                 <li>
-                    <a href='#dashboard'>Dashboard</a>
+                    <a
+                        className='flex items-center p-3 rounded-lg hover:bg-midnight-blue hover:text-white transition-colors'
+                        onClick={() => {
+                            navigate("/dashboard");
+                        }}>
+                        <RiDashboard3Fill className='mr-3 text-2xl' />
+                        <span className='font-medium'>Dashboard</span>
+                    </a>
                 </li>
                 <li>
-                    <a href='#settings'>Settings</a>
+                    <a
+                        className='flex items-center p-3 rounded-lg hover:bg-midnight-blue hover:text-white transition-colors'
+                        onClick={() => {
+                            navigate("/users");
+                        }}>
+                        <FaUser className='mr-3 text-xl' />
+                        <span className='font-medium'>Users</span>
+                    </a>
                 </li>
             </ul>
         </aside>

@@ -4,17 +4,18 @@ import {
     CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/redux/auth/authSlice";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const loginSchema = z.object({
     userName: z.string().min(1, "Username is required"),
@@ -33,11 +34,19 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const dispatch = useDispatch();
-    // const { status, error } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const { error, status } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (status === "succeeded") {
+            navigate("/dashboard");
+        }
+        if (error) {
+            toast.error(error);
+        }
+    }, [error, status, navigate]);
 
     const onSubmit = (data) => {
-        console.log(data);
-
         dispatch(loginUser(data));
     };
 
@@ -45,11 +54,13 @@ const Login = () => {
         <div
             className='bg-cover bg-center h-screen flex justify-center items-center'
             style={{ backgroundImage: "url('/bg.jpg')" }}>
+            <Toaster position='top-right' reverseOrder={false} />
             <Card className='w-[450px] bg-white shadow-lg rounded-lg'>
                 <CardHeader>
-                    <CardTitle className='text-center text-3xl mb-16 font-bold text-midnight-blue'>
-                        SwiftPOS
-                    </CardTitle>
+                    <div className='flex justify-center content-center mb-16 items-center'>
+                        <img src='logo.png' className='w-20 h-20' alt='SwiftPOS Logo' />
+                        <p className='text-3xl font-bold text-midnight-blue'>SwiftPOS</p>
+                    </div>
                     <CardDescription className='text-2xl text-midnight-blue text-center font-medium'>
                         Login Form
                     </CardDescription>
@@ -68,8 +79,8 @@ const Login = () => {
                                 type='text'
                                 placeholder='Enter your username'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.userName
-                                    ? "border-red-500 focus:ring-red-500"
-                                    : "border-slate-300 focus:ring-midnight-blue"
+                                        ? "border-red-500 focus:ring-red-500"
+                                        : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("userName")}
                             />
@@ -88,8 +99,8 @@ const Login = () => {
                                 type={showPassword ? "text" : "password"}
                                 placeholder='Enter your password'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.password
-                                    ? "border-red-500 focus:ring-red-500"
-                                    : "border-slate-300 focus:ring-midnight-blue"
+                                        ? "border-red-500 focus:ring-red-500"
+                                        : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("password")}
                             />
