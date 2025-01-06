@@ -57,9 +57,11 @@ export default {
           '5': 'hsl(var(--chart-5))'
         },
         'midnight-blue': '#191970',
-        'soft-peach': '#FFDAB9',
         'champagne-gold': '#C8B560',
+        'soft-peach': '#FFDAB9',
         'light-gray': '#D3D3D3',
+        'crimson-red': '#DC143C',
+        'forest-green': '#228B22'
       }
     }
   },

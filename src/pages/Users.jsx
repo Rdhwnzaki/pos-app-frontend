@@ -8,6 +8,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 
 const dummyUsers = [
     { id: 1, name: "John Doe", email: "john.doe@example.com", role: "Admin" },
@@ -49,15 +50,15 @@ const columns = [
     },
     {
         id: "actions",
-        header: "Actions",
+        header: "",
         cell: ({ row }) => (
-            <div className='flex space-x-2'>
-                <button className='text-green-500 hover:text-green-700 flex items-center'>
+            <div className='flex space-x-2 justify-end'>
+                <Button className='flex items-center text-forest-green hover:text-white bg-transparent hover:bg-forest-green'>
                     <FaUserEdit className='mr-1' /> Edit
-                </button>
-                <button className='text-red-500 hover:text-red-700 flex items-center'>
+                </Button>
+                <Button className='flex items-center text-crimson-red hover:text-white bg-transparent hover:bg-crimson-red'>
                     <FaTrashAlt className='mr-1' /> Delete
-                </button>
+                </Button>
             </div>
         ),
     },

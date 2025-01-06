@@ -55,7 +55,7 @@ export default function Navbar() {
                 </div>
             </div>
             <div className='flex items-center space-x-4'>
-                <div className='bg-slate-200 py-2 px-4 rounded-full text-lg font-mono'>
+                <div className='bg-slate-200 py-2 px-4 rounded-full text-sm font-mono'>
                     <span>
                         {moment(currentDate.toLocaleString()).format(
                             "dddd, MMMM Do YYYY, h:mm:ss a"

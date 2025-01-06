@@ -83,13 +83,13 @@ const Login = () => {
                                 type='text'
                                 placeholder='Enter your username'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.userName
-                                        ? "border-red-500 focus:ring-red-500"
+                                        ? "border-crimson-red focus:ring-crimson-red"
                                         : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("userName")}
                             />
                             {errors.userName && (
-                                <p className='text-red-500 text-sm'>
+                                <p className='text-crimson-red text-sm'>
                                     {errors.userName.message}
                                 </p>
                             )}
@@ -103,7 +103,7 @@ const Login = () => {
                                 type={showPassword ? "text" : "password"}
                                 placeholder='Enter your password'
                                 className={`border rounded-md px-4 py-2 focus:outline-none focus:ring-2 ${errors.password
-                                        ? "border-red-500 focus:ring-red-500"
+                                        ? "border-crimson-red focus:ring-crimson-red"
                                         : "border-slate-300 focus:ring-midnight-blue"
                                     }`}
                                 {...register("password")}
@@ -115,7 +115,7 @@ const Login = () => {
                                 {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
                             </button>
                             {errors.password && (
-                                <p className='text-red-500 text-sm'>
+                                <p className='text-crimson-red text-sm'>
                                     {errors.password.message}
                                 </p>
                             )}
