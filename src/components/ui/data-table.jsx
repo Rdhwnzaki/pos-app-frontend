@@ -7,9 +7,7 @@ import {
     getPaginationRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { FaSearch, FaUser, FaArrowUp, FaArrowDown } from "react-icons/fa";
-import { IoFastFood } from "react-icons/io5";
-import { BiSolidFoodMenu } from "react-icons/bi";
+import { FaSearch, FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 export function DataTable({ columns, data, name }) {
     const [globalFilter, setGlobalFilter] = React.useState("");
@@ -35,28 +33,18 @@ export function DataTable({ columns, data, name }) {
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    const getIconForPage = (pageName) => {
-        switch (pageName) {
-            case "Product":
-                return IoFastFood;
-            case "User":
-                return FaUser;
-            case "Category":
-                return BiSolidFoodMenu;
-            default:
-                return FaSearch;
-        }
-    };
-
-    function ButtonWithIcon({ name, pageName }) {
-        const Icon = getIconForPage(pageName);
-        return (
-            <button className='px-4 py-2 bg-midnight-blue text-white rounded-md shadow-md flex items-center space-x-2 hover:bg-midnight-blue/80 transition duration-300'>
-                <Icon className='text-lg' />
-                <span>{`Add New ${name}`}</span>
-            </button>
-        );
-    }
+    // const getIconForPage = (pageName) => {
+    //     switch (pageName) {
+    //         case "Product":
+    //             return IoFastFood;
+    //         case "User":
+    //             return FaUser;
+    //         case "Category":
+    //             return BiSolidFoodMenu;
+    //         default:
+    //             return FaSearch;
+    //     }
+    // };
 
     return (
         <div className='space-y-6'>
@@ -73,7 +61,6 @@ export function DataTable({ columns, data, name }) {
                         className='w-full pl-10 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-midnight-blue focus:outline-none'
                     />
                 </div>
-                <ButtonWithIcon name={name} pageName={name} />
             </div>
 
             <div className='overflow-x-auto border rounded-lg shadow-md bg-white'>

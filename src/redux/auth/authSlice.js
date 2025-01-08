@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
@@ -42,14 +43,15 @@ const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.user = action.payload.user;
-                state.token = action.payload.token;
+                state.user = action.payload.result;
+                state.token = action.payload.accessToken;
                 sessionStorage.setItem("token", action.payload.accessToken);
                 sessionStorage.setItem("user", JSON.stringify(action.payload.result));
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload.message;
+                toast.error(action.payload.message);
             });
     },
 });

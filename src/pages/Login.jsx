@@ -14,7 +14,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/redux/auth/authSlice";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -42,9 +42,6 @@ const Login = () => {
         if (status === "succeeded") {
             navigate("/dashboard");
         }
-        if (error) {
-            toast.error(error);
-        }
     }, [error, status, navigate]);
 
     const onSubmit = (data) => {
@@ -55,10 +52,10 @@ const Login = () => {
         <div
             className='bg-cover bg-center h-screen flex justify-center items-center'
             style={{ backgroundImage: "url('/bg.jpg')" }}>
+            <Toaster position='top-right' reverseOrder={false} />
             <Helmet>
                 <title>Login - SwiftPOS</title>
             </Helmet>
-            <Toaster position='top-right' reverseOrder={false} />
             <Card className='w-[450px] bg-white shadow-lg rounded-lg'>
                 <CardHeader>
                     <div className='flex justify-center content-center mb-16 items-center'>
